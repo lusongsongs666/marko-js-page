@@ -1,29 +1,209 @@
 <div.container>
-  <header>
-    <img.logo src="./logo.svg" alt="Marko"/>
-  </header>
-  <main>
-    <p>Edit <code>./src/routes/_index/+page.marko</code> and save to reload.</p>
-    <a href="https://markojs.com/docs/getting-started">
-      Learn Marko
-    </a>
-  </main>
+  <div.top>
+    <div.logo>
+      <img src='../../assets/logo.png' />
+    </div>
+    <div.titles>
+      <count />
+      <div.title>titletitle</div>
+      <div.desc>
+        <span>descdescdesc</span>
+        <span.blue>descdescdescdescdescdesc</span>
+      </div>
+    </div>
+  </div>
+  <div.bottom style=`flex-direction:${state.isMobile ? 'column' : 'row'};`>
+    <div.left style=`width:${state.isMobile ? '100%' : '48%'};`>
+      <div.barTitle>
+        <div.title>titletitletitletitle</div>
+        <div.desc>descdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdescdesc</div>
+      </div>
+      <for|item| of=state.titleList>
+        <imgTitle title=item.title subtitle=item.desc />
+      </for>
+    </div>
+    <div.right style=`width:${state.isMobile ? '100%' : '48%'};`>
+      <div.title>Free Code</div>
+      <div.col2>
+        <inputBox title='First Name'/>
+        <inputBox title='Second Name'/>
+      </div>
+      <div.col.mt40>
+        <inputBox title='Third Name'/>
+      </div>
+      <div.title.title2>Free Code Checkboxs</div>
+      <div.ver>
+        <for|item| of=state.checkboxList>
+          <checkboxTitle title=item.title />
+        </for>
+      </div>
+      <div.desc>desc desc desc desc desc desc desc desc desc </div>
+      <div.btn>
+        <div.btnInner>Learn More</div>
+      </div>
+    </div>
+  </div>
 </div>
-<mouse-mask/>
+
+class {
+  onCreate() {
+    this.state = {
+      isMobile: false,
+      count: 0,
+      titleList: [
+        { title: 'title1 title1 title1', desc: 'desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1desc1' },
+        { title: 'title2 title2 title2', desc: 'desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2desc2' },
+        { title: 'title3 title3 title3', desc: 'desc3desc3desc3desc3desc3desc3desc3desc3desc3' },
+      ],
+      checkboxList: [
+        { title: 'title1 title1 title1 title1 title1 title1' },
+        { title: 'title2 title2 title2 title2 title2 title2' },
+        { title: 'title3 title3 title3 title3 title3 title3' },
+      ],
+    };
+  }
+  onMount() {
+    window.addEventListener('resize', (e) => {
+      if (window.innerWidth < 768) {
+        this.state.isMobile = true;
+      } else {
+        this.state.isMobile = false;
+      }
+    })
+  }
+}
 
 style {
   .container {
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     font-size: clamp(1em, 2vw, 2em); 
-    padding: 1em;
+    padding: 0.5em;
     box-sizing: border-box;
-    height:100%;
+    display: flex;
+    flex-direction: column;
     width:100%;
-  }
-  img.logo {
-    width:12em;
+    height:100%;
+    color: #fff;
+    overflow: hidden auto;
+    .top {
+      box-sizing: border-box;
+      display: flex;
+      width: 100%;
+      height: 300px;
+      padding: 20px;
+      color: #fff;
+      background-color: #000;
+      .logo {
+        width: 10%;
+        min-width: 60px;
+        img {
+          width: 100%;
+        }
+      }
+      .titles {
+        box-sizing: border-box;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+        overflow: hidden;
+        .title {
+          width: 100%;
+          margin-top: 10px;
+          font-size: 20px;
+          color: #fff;
+        }
+        .desc {
+          width: 100%;
+          margin-top: 10px;
+          font-size: 50px;
+          color: #fff;
+          white-space: wrap;
+          word-break: break-all;
+          .blue {
+            color: lightblue;
+          }
+        }
+      }
+    }
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .left, .right {
+        box-sizing: border-box;
+        width: 48%;
+        margin-top: 15px;
+      }
+      .left {
+        .barTitle {
+          box-sizing: border-box;
+          width: 100%;
+          padding: 15px 25px;
+          margin-bottom: 20px;
+          font-size: 35px;
+          color: lightblue;
+          background-color: blue;
+          .title {
+            margin-bottom: 5px;
+            font-size: 25px;
+          }
+          .desc {
+            color: #fff;
+            font-size: 20px;
+            word-break: break-all;
+          }
+        }
+        .imgTitle {
+          color: #000;
+        }
+      }
+      .right {
+        padding: 25px 45px;
+        padding-top: 5px;
+        background-color: #000;
+        .title {
+          margin: 20px 0;
+          color: #fff;
+          font-size: 25px;
+        }
+        .col2 {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 40px;
+          .inputBox {
+            width: 48%;
+          }
+        }
+        .title2 {
+          margin-top: 40px;
+        }
+        .ver {
+          display: flex;
+          flex-direction: column;
+        }
+        .desc {
+          margin-bottom: 30px;
+          font-size: 14px;
+        }
+        .btn {
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          .btnInner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            min-width: 100px;
+            height: 40px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            background-color: orangered;
+          }
+        }
+      }
+    }
   }
 }

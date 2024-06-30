@@ -1,0 +1,37 @@
+<div.count>${state.count}</div>
+
+class {
+  onCreate() {
+    this.state = {
+      timer: null,
+      count: 0,
+    };
+  }
+  onMount() {
+    this.state.timer = setInterval(() => {
+      this.state.count = this.countdownFormat('2025-12-31');
+    }, 1000)
+  }
+  onDestroy() {
+    clearInterval(this.state.timer);
+  }
+  static countdownFormat(targetDate) {
+    const target = new Date(targetDate);
+    const now = new Date();
+    const diff = target.getTime() - now.getTime();
+    if (diff <= 0) {
+      return "0天0小时0分钟0秒";
+    }
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    return `${days}天${hours}小时${minutes}分钟${seconds}秒`;
+  }
+}
+
+style {
+  .count {
+    font-size: 14px;
+  }
+}

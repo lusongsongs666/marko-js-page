@@ -1,0 +1,38 @@
+<div.imgTitle>
+  <div.img>
+    <img src='../assets/logo.png' />
+  </div>
+  <div.text>
+    <div.title>${data.title}</div>
+    <div.subtitle>${data.subtitle}</div>
+  </div>
+</div>
+
+style {
+  .imgTitle {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
+    .img {
+      width: 80px;
+      img {
+        width: 100%;
+      }
+    }
+    .text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      white-space: wrap;
+      word-break: break-all;
+      .title {
+        margin-bottom: 10px;
+        font-size: 25px;
+      }
+      .subtitle {
+        font-size: 14px;
+      }
+    }
+  }
+}
